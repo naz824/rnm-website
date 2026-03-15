@@ -1,12 +1,12 @@
 :root {
   --color-bg: #1a1140;
   --color-bg-elevated: #21164f;
-  --color-surface: #d4a5c7;
+  --color-surface: #2a1f54;
   --color-surface-2: #b987b1;
   --color-text: #ffffff;
   --color-muted: #f1dced;
   --color-heading: #ffffff;
-  --color-accent: #d4a5c7;
+  --color-accent: #f0e14c;
   --color-cta: #f0e14c;
   --color-cta-text: #1a1140;
   --color-border: rgba(255, 255, 255, 0.26);
