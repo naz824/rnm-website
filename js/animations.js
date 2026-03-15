@@ -1,4 +1,34 @@
-const io=new IntersectionObserver((entries)=>entries.forEach(e=>e.isIntersecting&&e.target.classList.add('in')),{threshold:.2});
-document.querySelectorAll('.fade-up').forEach(el=>io.observe(el));
+const animatedElements = document.querySelectorAll('.fade-up, .card');
 
-document.querySelectorAll('[data-count]').forEach(el=>{const target=+el.dataset.count;let n=0;const step=Math.ceil(target/90);const t=setInterval(()=>{n=Math.min(target,n+step);el.textContent=n.toLocaleString();if(n===target)clearInterval(t);},24);});
+const observer = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in');
+      }
+    });
+  },
+  { threshold: 0.2 }
+);
+
+animatedElements.forEach((element) => observer.observe(element));
+
+const counters = document.querySelectorAll('[data-count]');
+
+const runCounter = (counter) => {
+  const target = Number(counter.dataset.count);
+  let current = 0;
+  const increment = Math.max(1, Math.ceil(target / 90));
+
+  const tick = () => {
+    current = Math.min(target, current + increment);
+    counter.textContent = current.toLocaleString();
+    if (current < target) {
+      requestAnimationFrame(tick);
+    }
+  };
+
+  tick();
+};
+
+counters.forEach((counter) => runCounter(counter));
