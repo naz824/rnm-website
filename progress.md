@@ -44,3 +44,11 @@
 ## Milestone 6 — Validation + delivery
 - Ran local static checks for broken internal links and image URL constraints.
 - Prepared commit and pull request metadata.
+
+## Milestone 7 — Final QA accessibility + metadata pass
+- Added a skip-to-content link (`Skip to main content`) across every HTML page and confirmed each page targets `#main-content`.
+- Added `aria-label` attributes to social/icon links (Instagram, Facebook, YouTube, and email links) site-wide, including footer social links and icon-only header links.
+- Added `og:image` metadata on every page for consistent social sharing previews.
+- Confirmed `pages/become-a-sponsor.html` exists and expanded it with explicit 2026 sponsor tier details.
+- Updated required theme tokens in `css/variables.css` to: `--color-bg: #1a1140`, `--color-accent: #f0e14c`, and `--color-surface: #2a1f54`.
+- Re-ran link and accessibility checks to verify no broken internal links and no missing image `alt` text.
