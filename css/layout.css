@@ -23,9 +23,14 @@
 .site-header__row {
   display: flex;
   align-items: center;
-  justify-content: space-between;
   gap: var(--space-4);
   padding-block: 0.75rem;
+}
+
+.site-header__cta {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
 }
 
 .brand {

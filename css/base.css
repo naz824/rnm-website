@@ -48,6 +48,18 @@ main {
   margin-bottom: var(--space-3);
 }
 
+a {
+  color: inherit;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
+  transition: color var(--transition), opacity var(--transition), transform var(--transition), background-color var(--transition), border-color var(--transition);
+}
+
+a:hover,
+a:focus-visible {
+  opacity: 0.85;
+}
+
 h2,
 h3 {
   margin-bottom: var(--space-3);
@@ -66,12 +78,13 @@ p {
   border: 2px solid transparent;
   padding: 0.75rem 1.25rem;
   font-weight: 700;
-  transition: transform var(--transition), background var(--transition), color var(--transition), border-color var(--transition);
+  transition: transform var(--transition), background var(--transition), color var(--transition), border-color var(--transition), box-shadow var(--transition);
 }
 
 .btn:hover,
 .btn:focus-visible {
   transform: translateY(-2px);
+  box-shadow: var(--shadow-sm);
 }
 
 .btn--small {
@@ -84,6 +97,10 @@ p {
   color: var(--color-cta-text);
 }
 
+.btn--outlined {
+  border-color: var(--color-cta-text);
+}
+
 .btn--ghost {
   border-color: var(--color-accent);
   color: var(--color-accent);
@@ -91,7 +108,8 @@ p {
 
 .card {
   background: var(--color-surface);
-  border: 1px solid var(--color-border);
+  color: #241a33;
+  border: 1px solid color-mix(in srgb, var(--color-surface) 70%, #ffffff);
   border-radius: var(--radius-md);
   box-shadow: var(--shadow-sm);
   padding: var(--space-5);

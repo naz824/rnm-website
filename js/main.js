@@ -2,7 +2,7 @@ import './navigation.js';
 import './animations.js';
 import './forms.js';
 
-const targetDate = new Date('2025-04-11T17:00:00-04:00');
+const targetDate = new Date('2026-04-11T17:00:00-04:00');
 
 const updateCountdown = () => {
   const diff = targetDate.getTime() - Date.now();
