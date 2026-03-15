@@ -1,0 +1,19 @@
+:root {
+  --color-bg:#0a001a;
+  --color-surface:#1e1d4e;
+  --color-surface-2:#2d2b6f;
+  --color-text:#ffffff;
+  --color-muted:#d7d7ec;
+  --color-accent:#f2e554;
+  --color-accent-2:#ff7edb;
+  --color-success:#33d17a;
+  --font-heading:'Bebas Neue','Arial Narrow',sans-serif;
+  --font-body:'Libre Franklin',Arial,Helvetica,sans-serif;
+  --font-alt:'Raleway',sans-serif;
+  --space-1:0.25rem;--space-2:0.5rem;--space-3:0.75rem;--space-4:1rem;--space-5:1.5rem;--space-6:2rem;--space-7:3rem;--space-8:4rem;
+  --radius-sm:6px;--radius-md:12px;--radius-lg:20px;--shadow:0 16px 36px rgb(0 0 0 / 35%);
+  --max-width:1200px;
+}
+[data-theme='light'] {
+  --color-bg:#f7f8fc;--color-surface:#ffffff;--color-surface-2:#eceefe;--color-text:#161532;--color-muted:#464677;
+}

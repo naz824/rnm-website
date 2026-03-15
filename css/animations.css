@@ -1,0 +1,3 @@
+.fade-up{opacity:0;transform:translateY(20px);transition:opacity .6s,transform .6s}.fade-up.in{opacity:1;transform:none}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.03)}}
+.pulse{animation:pulse 2s infinite}

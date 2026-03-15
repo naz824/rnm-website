@@ -1,0 +1,13 @@
+.site-header{position:sticky;top:0;z-index:100;background:rgb(10 0 26 / 92%);backdrop-filter:blur(8px);border-bottom:1px solid rgb(255 255 255 / 14%)}
+.site-header__row{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:.75rem 0}
+.brand{display:flex;align-items:center;gap:.75rem;font-weight:800}
+.brand img{width:52px;height:52px;border-radius:50%}
+.nav__list{display:flex;gap:1rem;align-items:center;font-weight:700;font-size:.92rem}
+.hero{padding:6rem 0;background:linear-gradient(180deg,rgb(10 0 26 / 80%),rgb(10 0 26)),url('https://images.squarespace-cdn.com/content/v1/5ccc2e9b92441b0bec3f5236/1559509527302-HC0UI2KOTO3LAH0PAAZ2/RNM_white_background.jpg?format=2500w') center/cover}
+.hero__grid{display:grid;grid-template-columns:1.2fr .8fr;gap:2rem;align-items:center}
+.grid{display:grid;gap:1rem}
+.grid--3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.grid--2{grid-template-columns:repeat(2,minmax(0,1fr))}
+.bento{grid-auto-rows:180px}.bento .card:nth-child(1){grid-row:span 2}
+.site-footer{background:#090518;padding:3rem 0;border-top:1px solid rgb(255 255 255 / 14%)}
+.footer__grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:1.5rem}

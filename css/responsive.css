@@ -1,0 +1,1 @@
+@media (max-width: 960px){.hero__grid,.grid--3,.grid--2,.footer__grid{grid-template-columns:1fr}.nav__list{position:fixed;inset:74px 0 auto 0;background:var(--color-surface);padding:1rem;display:none;flex-direction:column}.nav__list.is-open{display:flex}.mobile-toggle{display:block}}

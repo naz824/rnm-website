@@ -1,0 +1,1 @@
+document.querySelectorAll('form[data-newsletter]').forEach(form=>form.addEventListener('submit',e=>{e.preventDefault();form.innerHTML='<p role="status">Thank you! You\'re on the list for market updates.</p>'; }));
