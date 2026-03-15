@@ -1,3 +1,25 @@
-.fade-up{opacity:0;transform:translateY(20px);transition:opacity .6s,transform .6s}.fade-up.in{opacity:1;transform:none}
-@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.03)}}
-.pulse{animation:pulse 2s infinite}
+.fade-up {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 600ms ease, transform 600ms ease;
+}
+
+.fade-up.in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.02);
+  }
+}
+
+.pulse {
+  animation: pulse 2.3s infinite;
+}

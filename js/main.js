@@ -2,18 +2,90 @@ import './navigation.js';
 import './animations.js';
 import './forms.js';
 
-const nextDate=new Date('2026-04-11T17:00:00-04:00');
-const update=()=>{const t=nextDate-new Date();if(t<0)return;const d=Math.floor(t/86400000),h=Math.floor(t/3600000)%24,m=Math.floor(t/60000)%60,s=Math.floor(t/1000)%60;[['days',d],['hours',h],['minutes',m],['seconds',s]].forEach(([k,v])=>{const el=document.querySelector(`[data-${k}]`);if(el)el.textContent=String(v).padStart(2,'0');});};
-setInterval(update,1000);update();
+const targetDate = new Date('2025-04-11T17:00:00-04:00');
 
-document.querySelectorAll('.accordion__button').forEach(btn=>btn.addEventListener('click',()=>{const panel=btn.nextElementSibling;const ex=btn.getAttribute('aria-expanded')==='true';btn.setAttribute('aria-expanded',String(!ex));panel.style.maxHeight=ex?'0px':panel.scrollHeight+'px';}));
+const updateCountdown = () => {
+  const diff = targetDate.getTime() - Date.now();
+  const safeDiff = Math.max(0, diff);
 
-const testimonials=[...document.querySelectorAll('.testimonial')];let idx=0;setInterval(()=>{if(!testimonials.length)return;testimonials[idx].classList.remove('is-active');idx=(idx+1)%testimonials.length;testimonials[idx].classList.add('is-active');},5000);
+  const day = Math.floor(safeDiff / 86400000);
+  const hour = Math.floor((safeDiff / 3600000) % 24);
+  const minute = Math.floor((safeDiff / 60000) % 60);
+  const second = Math.floor((safeDiff / 1000) % 60);
 
-const lightbox=document.querySelector('.lightbox');const lightboxImg=lightbox?.querySelector('img');document.querySelectorAll('.gallery img').forEach(img=>img.addEventListener('click',()=>{lightboxImg.src=img.src;lightbox.classList.add('is-open');}));lightbox?.addEventListener('click',()=>lightbox.classList.remove('is-open'));
+  const values = { days: day, hours: hour, minutes: minute, seconds: second };
+  Object.entries(values).forEach(([key, value]) => {
+    const element = document.querySelector(`[data-${key}]`);
+    if (element) {
+      element.textContent = String(value).padStart(2, '0');
+    }
+  });
+};
 
-const topBtn=document.querySelector('.back-to-top');topBtn?.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+updateCountdown();
+setInterval(updateCountdown, 1000);
 
-document.querySelector('[data-theme-toggle]')?.addEventListener('click',()=>{const now=document.documentElement.dataset.theme==='light'?'dark':'light';document.documentElement.dataset.theme=now;});
+document.querySelectorAll('.accordion__button').forEach((button) => {
+  button.addEventListener('click', () => {
+    const panel = button.nextElementSibling;
+    const expanded = button.getAttribute('aria-expanded') === 'true';
+    button.setAttribute('aria-expanded', String(!expanded));
+    if (panel) {
+      panel.style.maxHeight = expanded ? '0px' : `${panel.scrollHeight}px`;
+    }
+  });
+});
 
-const search=document.querySelector('[data-vendor-search]');search?.addEventListener('input',()=>{const q=search.value.toLowerCase();document.querySelectorAll('[data-vendor]').forEach(item=>item.hidden=!item.textContent.toLowerCase().includes(q));});
+const testimonials = [...document.querySelectorAll('.testimonial')];
+let index = 0;
+if (testimonials.length > 1) {
+  setInterval(() => {
+    testimonials[index].classList.remove('is-active');
+    index = (index + 1) % testimonials.length;
+    testimonials[index].classList.add('is-active');
+  }, 5500);
+}
+
+const lightbox = document.querySelector('.lightbox');
+const lightboxImage = lightbox?.querySelector('img');
+
+document.querySelectorAll('.gallery img').forEach((image) => {
+  image.addEventListener('click', () => {
+    if (!lightbox || !lightboxImage) return;
+    lightboxImage.src = image.src;
+    lightbox.classList.add('is-open');
+  });
+});
+
+lightbox?.addEventListener('click', () => {
+  lightbox.classList.remove('is-open');
+});
+
+const backToTop = document.querySelector('.back-to-top');
+window.addEventListener('scroll', () => {
+  backToTop?.classList.toggle('is-visible', window.scrollY > 400);
+});
+
+backToTop?.addEventListener('click', () => {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+
+const root = document.documentElement;
+const savedTheme = localStorage.getItem('rnm-theme');
+if (savedTheme) {
+  root.dataset.theme = savedTheme;
+}
+
+document.querySelector('[data-theme-toggle]')?.addEventListener('click', () => {
+  const next = root.dataset.theme === 'light' ? 'dark' : 'light';
+  root.dataset.theme = next;
+  localStorage.setItem('rnm-theme', next);
+});
+
+const search = document.querySelector('[data-vendor-search]');
+search?.addEventListener('input', () => {
+  const query = search.value.toLowerCase();
+  document.querySelectorAll('[data-vendor]').forEach((vendor) => {
+    vendor.hidden = !vendor.textContent.toLowerCase().includes(query);
+  });
+});

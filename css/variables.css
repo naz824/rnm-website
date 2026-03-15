@@ -1,19 +1,50 @@
 :root {
-  --color-bg:#0a001a;
-  --color-surface:#1e1d4e;
-  --color-surface-2:#2d2b6f;
-  --color-text:#ffffff;
-  --color-muted:#d7d7ec;
-  --color-accent:#f2e554;
-  --color-accent-2:#ff7edb;
-  --color-success:#33d17a;
-  --font-heading:'Bebas Neue','Arial Narrow',sans-serif;
-  --font-body:'Libre Franklin',Arial,Helvetica,sans-serif;
-  --font-alt:'Raleway',sans-serif;
-  --space-1:0.25rem;--space-2:0.5rem;--space-3:0.75rem;--space-4:1rem;--space-5:1.5rem;--space-6:2rem;--space-7:3rem;--space-8:4rem;
-  --radius-sm:6px;--radius-md:12px;--radius-lg:20px;--shadow:0 16px 36px rgb(0 0 0 / 35%);
-  --max-width:1200px;
+  --color-bg: #1a0a2e;
+  --color-bg-elevated: #26123f;
+  --color-surface: #2f1d4b;
+  --color-surface-2: #42255f;
+  --color-text: #ffffff;
+  --color-muted: #d8cddd;
+  --color-heading: #ffffff;
+  --color-accent: #c4a0a5;
+  --color-cta: #e8e44f;
+  --color-cta-text: #161616;
+  --color-border: rgba(255, 255, 255, 0.2);
+  --color-overlay: rgba(13, 5, 28, 0.7);
+  --color-success: #6edc8b;
+  --color-error: #ff8f8f;
+
+  --font-heading: "Bebas Neue", "Arial Narrow", sans-serif;
+  --font-body: "Libre Franklin", Arial, Helvetica, sans-serif;
+
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 2.5rem;
+  --space-8: 3rem;
+  --space-9: 4rem;
+
+  --radius-sm: 0.5rem;
+  --radius-md: 0.85rem;
+  --radius-lg: 1.25rem;
+  --shadow-sm: 0 5px 14px rgba(0, 0, 0, 0.2);
+  --shadow-lg: 0 18px 38px rgba(0, 0, 0, 0.35);
+
+  --max-width: 1200px;
+  --transition: 220ms ease;
 }
-[data-theme='light'] {
-  --color-bg:#f7f8fc;--color-surface:#ffffff;--color-surface-2:#eceefe;--color-text:#161532;--color-muted:#464677;
+
+[data-theme="light"] {
+  --color-bg: #f7f1f8;
+  --color-bg-elevated: #ffffff;
+  --color-surface: #ffffff;
+  --color-surface-2: #f0e4f2;
+  --color-text: #1f1630;
+  --color-muted: #5e4d68;
+  --color-heading: #1f1630;
+  --color-border: rgba(31, 22, 48, 0.18);
+  --color-overlay: rgba(246, 241, 248, 0.88);
 }
