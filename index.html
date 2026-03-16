@@ -3,160 +3,494 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Home | Richmond Night Market</title>
-  <meta name="description" content="Richmond Night Market celebrates creativity, commerce, and community in Richmond, Virginia.">
-  <meta property="og:image" content="https://images.squarespace-cdn.com/content/v1/5ccc2e9b92441b0bec3f5236/1559791827974-F6Y1JKAHZ96YXTF221NC/RNM+primary+logo+in+circle.png">
-  <link rel="preconnect" href="https://images.squarespace-cdn.com">
-  <link rel="stylesheet" href="css/variables.css">
-  <link rel="stylesheet" href="css/reset.css">
-  <link rel="stylesheet" href="css/base.css">
-  <link rel="stylesheet" href="css/layout.css">
-  <link rel="stylesheet" href="css/components.css">
-  <link rel="stylesheet" href="css/animations.css">
-  <link rel="stylesheet" href="css/responsive.css">
+  <title>Richmond Night Market | Official</title>
+  <meta name="description" content="Richmond Night Market celebrates creativity, culture, and community in downtown Richmond, Virginia.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Libre+Franklin:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --dark-bg: #0a001a;
+      --yellow: #f2e554;
+      --mauve: #cc8ca8;
+      --white: #ffffff;
+      --black: #000000;
+      --dark-section: #1e1d4e;
+      --max-width: 1240px;
+      --section-space: clamp(5rem, 10vw, 7.5rem);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: 'Libre Franklin', sans-serif;
+      font-size: 16px;
+      line-height: 1.65;
+      background: var(--dark-bg);
+      color: var(--white);
+    }
+
+    img { max-width: 100%; display: block; }
+    a { color: inherit; text-decoration: none; }
+    .container { width: min(100% - 2.5rem, var(--max-width)); margin-inline: auto; }
+    .section { position: relative; padding: var(--section-space) 0; overflow: hidden; }
+    .section-title {
+      margin: 0 0 2.4rem;
+      font: 400 clamp(3rem, 6vw, 4rem)/0.95 'Bebas Neue', cursive;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--yellow);
+      text-align: center;
+    }
+
+    .btn-pill {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: .5rem;
+      padding: .95rem 2.1rem;
+      border-radius: 50px;
+      background: var(--yellow);
+      color: var(--black);
+      font: 400 1.05rem/1 'Bebas Neue', cursive;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      border: 1px solid transparent;
+      transition: transform .3s ease, filter .3s ease;
+    }
+    .btn-pill:hover { transform: translateY(-2px); filter: brightness(0.88); }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(10,0,26,.95);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(255,255,255,.1);
+    }
+    .site-header__wrap {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      gap: 1.2rem;
+      align-items: center;
+      padding: 1rem 0;
+    }
+    .header-nav__row {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+    }
+    .header-nav__link {
+      font: 400 .9rem/1 'Bebas Neue', cursive;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      opacity: .95;
+    }
+    .header-nav__link:hover { color: var(--yellow); }
+    .header-logo img { width: 100px; height: 100px; object-fit: cover; }
+    .header-cta { justify-self: end; text-align: right; }
+    .header-cta__actions { display: flex; justify-content: flex-end; gap: .7rem; margin-bottom: .7rem; flex-wrap: wrap; }
+    .header-social { list-style: none; margin: 0; padding: 0; display: flex; justify-content: flex-end; gap: .45rem; }
+    .header-social a {
+      width: 30px; height: 30px; border-radius: 50%; border: 1px solid rgba(255,255,255,.75);
+      display: grid; place-items: center; font-size: .74rem; letter-spacing: .5px;
+    }
+    .hamburger { display: none; }
+
+    .hero-scroll {
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      background: linear-gradient(145deg,#0a001a 35%,#13022d 100%);
+    }
+    .hero-scroll__word { letter-spacing: 5px; text-transform: uppercase; font-size: 1.05rem; }
+    .hero-scroll__line {
+      width: 1px;
+      height: 82px;
+      margin: 1.2rem auto 0;
+      background: linear-gradient(to bottom, rgba(255,255,255,.95), rgba(255,255,255,0));
+      animation: drop 2s ease-in-out infinite;
+    }
+
+    .marquee { background: #0f0431; white-space: nowrap; overflow: hidden; }
+    .marquee__inner {
+      display: inline-block;
+      font: 400 clamp(2.6rem, 6vw, 4rem)/1 'Bebas Neue', cursive;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      padding: 1.2rem 0;
+      animation: marquee 22s linear infinite;
+    }
+
+    .info-section, .video-section, .vendor-cta, .newsletter, .media-features {
+      background: var(--dark-section);
+    }
+    .decor {
+      position: absolute;
+      width: 150px;
+      opacity: .4;
+      pointer-events: none;
+    }
+    .decor--left { left: -20px; top: 30px; }
+    .decor--right { right: -20px; bottom: 30px; transform: rotate(20deg); }
+    .info-section p { text-align: center; max-width: 860px; margin: auto; font-size: 1.15rem; }
+
+    .video-frame {
+      position: relative;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 24px 60px rgba(0,0,0,.4);
+    }
+    .video-frame iframe { width: 100%; aspect-ratio: 16/9; border: 0; }
+    .video-frame__mark {
+      position: absolute; right: 20px; bottom: 20px; width: 76px; opacity: .9;
+    }
+
+    .vendor-cta { text-align: center; }
+
+    .experience-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0,1fr));
+      gap: 1.1rem;
+    }
+    .exp-card { background: var(--mauve); color: #180c1a; border-radius: 16px; overflow: hidden; }
+    .exp-card img { height: 250px; width: 100%; object-fit: cover; }
+    .exp-card__body { padding: 1.2rem; }
+    .exp-card h3 { margin: 0 0 .55rem; font: 700 1.2rem/1.1 'Libre Franklin', sans-serif; text-transform: uppercase; }
+
+    .gallery-carousel { position: relative; }
+    .carousel-track img { width: 100%; height: min(68vh, 680px); object-fit: cover; display: none; }
+    .carousel-track img.is-active { display: block; }
+    .carousel-dots { display: flex; justify-content: center; gap: .5rem; margin-top: 1rem; }
+    .carousel-dots button {
+      width: 12px; height: 12px; border-radius: 50%; border: 1px solid rgba(255,255,255,.8); background: transparent;
+    }
+    .carousel-dots button.is-active { background: var(--yellow); border-color: var(--yellow); }
+
+    .team-list { display: grid; gap: 1.35rem; }
+    .team-card {
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      background: #140a2f;
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: 14px;
+      overflow: hidden;
+    }
+    .team-card img { width: 100%; height: 100%; min-height: 260px; object-fit: cover; filter: grayscale(1); }
+    .team-card__body { padding: 1.35rem 1.5rem; }
+    .team-card h3 { margin: 0; font: 400 2rem/1 'Bebas Neue', cursive; letter-spacing: 1.5px; color: var(--yellow); }
+    .team-card h4 { margin: .35rem 0 .9rem; font-weight: 700; }
+
+    .volunteer {
+      min-height: 65vh;
+      background: linear-gradient(rgba(10,0,26,.35), rgba(10,0,26,.55)), url('https://images.squarespace-cdn.com/content/v1/5ccc2e9b92441b0bec3f5236/1559509527302-HC0UI2KOTO3LAH0PAAZ2/RNM_white_background.jpg?format=2000w') center/cover;
+      display: grid; place-items: center;
+      text-align: center;
+      font: 400 clamp(2rem,5.2vw,4rem)/.95 'Bebas Neue', cursive;
+      letter-spacing: 2px;
+      color: var(--yellow);
+      padding: 2rem;
+    }
+
+    .ig-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0,1fr));
+      gap: .8rem;
+    }
+    .ig-grid img { aspect-ratio: 1/1; width: 100%; object-fit: cover; border-radius: 8px; }
+
+    .sponsors { background: var(--white); color: #1a1432; text-align: center; }
+    .sponsors h2 { color: #211753; }
+    .logo-row {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0,1fr));
+      gap: 1rem;
+      margin: 2rem 0;
+    }
+    .logo-chip {
+      border: 1px solid rgba(33,23,83,.2);
+      border-radius: 12px;
+      padding: 1.2rem .9rem;
+      font: 400 1.3rem/1 'Bebas Neue', cursive;
+      letter-spacing: 1.3px;
+    }
+
+    .media-features .logo-row {
+      grid-template-columns: repeat(7, minmax(0,1fr));
+      margin: 0;
+    }
+    .media-features .logo-chip { border-color: rgba(255,255,255,.22); }
+
+    .signup-form {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0,1fr));
+      gap: .8rem;
+    }
+    .signup-form input {
+      padding: 1rem;
+      border: 1px solid rgba(255,255,255,.4);
+      border-radius: 8px;
+      background: rgba(255,255,255,.08);
+      color: var(--white);
+      font: inherit;
+    }
+    .signup-form button { border: 0; background: var(--black); color: var(--white); border-radius: 8px; font-weight: 700; }
+
+    .vendor-photo {
+      background: linear-gradient(rgba(204,140,168,.63), rgba(204,140,168,.63)), url('https://images.squarespace-cdn.com/content/v1/5ccc2e9b92441b0bec3f5236/1559708915271-D5SPMH3U07U05U8Q823T/RNM_vendor-banner-image.jpg?format=1500w') center/cover;
+      text-align: center;
+    }
+
+    footer { background: #050505; text-align: center; padding: 4rem 1rem; }
+    footer img { width: 96px; margin: 0 auto .95rem; }
+
+    @keyframes marquee {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    @keyframes drop {
+      0% { transform: translateY(0); opacity: .4; }
+      50% { transform: translateY(16px); opacity: 1; }
+      100% { transform: translateY(0); opacity: .4; }
+    }
+
+    @media (max-width: 1024px) {
+      .site-header__wrap { grid-template-columns: 1fr auto; }
+      .header-logo { order: -1; }
+      .header-cta { grid-column: 1/-1; }
+      .experience-grid { grid-template-columns: repeat(2, minmax(0,1fr)); }
+      .logo-row, .media-features .logo-row { grid-template-columns: repeat(3, minmax(0,1fr)); }
+      .ig-grid { grid-template-columns: repeat(3, minmax(0,1fr)); }
+      .signup-form { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 768px) {
+      .hamburger { display: inline-flex; }
+      .site-header__wrap { grid-template-columns: auto auto; }
+      .header-logo { grid-column: 1/2; }
+      .hamburger {
+        justify-self: end;
+        border: 1px solid rgba(255,255,255,.35);
+        color: var(--white);
+        background: transparent;
+        border-radius: 999px;
+        padding: .6rem 1rem;
+        font-family: 'Bebas Neue', cursive;
+        letter-spacing: 1.5px;
+      }
+      .header-nav, .header-cta { display: none; }
+      .site-header.is-open .header-nav, .site-header.is-open .header-cta {
+        display: block;
+        grid-column: 1 / -1;
+      }
+      .header-nav__row { flex-direction: column; gap: .55rem; }
+      .team-card { grid-template-columns: 1fr; }
+      .ig-grid { grid-template-columns: repeat(2, minmax(0,1fr)); }
+      .logo-row, .media-features .logo-row, .signup-form { grid-template-columns: 1fr; }
+      .experience-grid { grid-template-columns: 1fr; }
+    }
+  </style>
 </head>
 <body>
-<a class="skip-link" href="#main-content">Skip to main content</a>
-
-
-<header class="site-header" data-sticky-nav>
-  <div class="announcement-banner">USA Today named Richmond Night Market a Top 10 Market in the U.S.</div>
-  <div class="container site-header__row">
-    <a class="brand" href="index.html">
-      <img src="https://images.squarespace-cdn.com/content/v1/5ccc2e9b92441b0bec3f5236/1559791827974-F6Y1JKAHZ96YXTF221NC/RNM+primary+logo+in+circle.png" alt="Richmond Night Market logo">
-      <span>Richmond Night Market</span>
-    </a>
-    <button class="mobile-toggle" data-nav-toggle aria-expanded="false" aria-controls="site-menu">Menu</button>
-    <nav class="site-nav" aria-label="Primary">
-      <ul id="site-menu" class="site-nav__list">
-        <li class="site-nav__item"><a href="index.html">Home</a></li>
-        <li class="site-nav__item"><a href="pages/experience.html">Experience</a></li>
-        <li class="site-nav__item"><a href="pages/highlights.html">Highlights</a></li>
-        <li class="site-nav__item"><a href="pages/holiday-villages.html">Holiday Villages</a></li>
-        <li class="site-nav__item"><a href="pages/team.html">Team</a></li>
-        <li class="site-nav__item"><a href="pages/media.html">Media</a></li>
-        <li class="site-nav__item"><a href="pages/partners.html">Partners</a></li>
-        <li class="site-nav__item"><a href="pages/instagram.html" aria-label="Instagram">Instagram</a></li>
-        <li class="site-nav__item"><a href="pages/sign-up.html">Sign Up</a></li>
-      </ul>
-    </nav>
-    <div class="site-header__cta" aria-label="Call to action links">
-      <a class="btn btn--accent btn--small" href="pages/become-a-vendor.html">Become A Vendor</a>
-      <a class="btn btn--accent btn--outlined btn--small" href="pages/become-a-sponsor.html">Become A Sponsor</a>
+  <header class="site-header" id="home">
+    <div class="container site-header__wrap">
+      <nav class="header-nav" aria-label="Primary">
+        <div class="header-nav__row">
+          <a class="header-nav__link" href="#home">Home</a>
+          <a class="header-nav__link" href="#experience">Experience</a>
+          <a class="header-nav__link" href="#highlights">Highlights</a>
+          <a class="header-nav__link" href="#villages">Holiday Villages</a>
+        </div>
+        <div class="header-nav__row" style="margin-top:.4rem;">
+          <a class="header-nav__link" href="#team">Team</a>
+          <a class="header-nav__link" href="#media">Media</a>
+          <a class="header-nav__link" href="#sponsors">Partners</a>
+          <a class="header-nav__link" href="#instagram">Instagram</a>
+          <a class="header-nav__link" href="#newsletter">Sign Up</a>
+        </div>
+      </nav>
+      <a class="header-logo" href="#home"><img src="https://images.squarespace-cdn.com/content/v1/5ccc2e9b92441b0bec3f5236/1559791827974-F6Y1JKAHZ96YXTF221NC/RNM+primary+logo+in+circle.png" alt="Richmond Night Market logo"></a>
+      <button class="hamburger" aria-expanded="false" aria-controls="mobileNav">Menu</button>
+      <div class="header-cta" id="mobileNav">
+        <div class="header-cta__actions">
+          <a class="btn-pill" href="#vendor-bottom">Become A Vendor</a>
+          <a class="btn-pill" href="#sponsors">Become A Sponsor</a>
+        </div>
+        <ul class="header-social" aria-label="Social links">
+          <li><a href="https://www.instagram.com/richmondnightmarketva/" target="_blank" rel="noreferrer">IG</a></li>
+          <li><a href="https://www.facebook.com/RichmondNightMarket" target="_blank" rel="noreferrer">FB</a></li>
+          <li><a href="https://www.youtube.com" target="_blank" rel="noreferrer">YT</a></li>
+          <li><a href="mailto:richmondvanightmarket@gmail.com">@</a></li>
+        </ul>
+      </div>
     </div>
-    <ul class="social-links" aria-label="Social media links">
-      <li><a href="https://www.instagram.com/richmondnightmarketva/" aria-label="Instagram" target="_blank" rel="noreferrer">IG</a></li>
-      <li><a href="https://www.facebook.com/RichmondNightMarket" aria-label="Facebook" target="_blank" rel="noreferrer">FB</a></li>
-      <li><a href="https://www.youtube.com" aria-label="YouTube" target="_blank" rel="noreferrer">YT</a></li>
-      <li><a href="mailto:richmondvanightmarket@gmail.com" aria-label="Email">@</a></li>
-    </ul>
-  </div>
-</header>
+  </header>
 
-<main id="main-content">
-  <section class="hero hero--home">
-    <div class="container hero__grid">
-      <div class="hero__content fade-up">
-        <p class="eyebrow">Richmond, Virginia</p>
-        <h1 class="section__title">Join us for our 8th season beginning Saturday, April 11, 2026</h1>
-        <p class="section__lede">Please join us at our Open Air Market every 2nd Saturday from 5 PM–9 PM (April–December) at the 17th Street Market.</p>
-        <div class="button-row">
-          <a class="btn btn--accent" href="pages/become-a-vendor.html">Vendor Applications</a>
-          <a class="btn btn--ghost" href="pages/join-our-family.html">Become a Volunteer</a>
+  <main>
+    <section class="hero-scroll section" aria-label="Scroll prompt">
+      <div>
+        <div class="hero-scroll__word">Scroll</div>
+        <div class="hero-scroll__line" aria-hidden="true"></div>
+      </div>
+    </section>
+
+    <section class="marquee" id="highlights" aria-label="Announcement marquee">
+      <div class="marquee__inner">USA Today names the Richmond Night Market as one of the Top 10 Markets in the U.S. • USA Today names the Richmond Night Market as one of the Top 10 Markets in the U.S. • </div>
+    </section>
+
+    <section class="section info-section" id="villages">
+      <svg class="decor decor--left" viewBox="0 0 80 80" fill="none" aria-hidden="true"><path d="M20 60c12-9 21-20 25-35" stroke="#b080ff" stroke-width="4"/><circle cx="17" cy="63" r="6" fill="#b080ff"/><path d="M56 56l4-9 9-4-9-4-4-9-4 9-9 4 9 4z" fill="#9f76ff"/></svg>
+      <svg class="decor decor--right" viewBox="0 0 80 80" fill="none" aria-hidden="true"><path d="M21 12l3 7 7 3-7 3-3 7-3-7-7-3 7-3z" fill="#b080ff"/><path d="M54 60V28m0 0 7 3m-7-3-7 3" stroke="#9f76ff" stroke-width="4"/></svg>
+      <div class="container">
+        <h2 class="section-title">Season Highlights</h2>
+        <p>Please join us at our <strong>Open Air Market every 2nd Saturday</strong> from 5pm-9pm (April-December) at the 17th Street Market. Located at 100 N 17th St, Richmond, VA 23219.</p>
+      </div>
+    </section>
+
+    <section class="section video-section">
+      <svg class="decor decor--left" viewBox="0 0 80 80" fill="none" aria-hidden="true"><circle cx="20" cy="28" r="4" fill="#9f76ff"/><circle cx="38" cy="16" r="2" fill="#9f76ff"/><path d="M54 56l4-9 9-4-9-4-4-9-4 9-9 4 9 4z" fill="#b080ff"/></svg>
+      <div class="container">
+        <div class="video-frame">
+          <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Richmond Night Market video highlight" loading="lazy" allowfullscreen></iframe>
+          <img class="video-frame__mark" src="https://images.squarespace-cdn.com/content/v1/5ccc2e9b92441b0bec3f5236/1559791827974-F6Y1JKAHZ96YXTF221NC/RNM+primary+logo+in+circle.png" alt="RNM watermark">
         </div>
       </div>
-      <aside class="card hero__panel pulse">
-        <h2>Countdown to Opening Night</h2>
-        <div class="countdown" aria-label="Countdown timer">
-          <div class="countdown__item"><span data-days>00</span><small>Days</small></div>
-          <div class="countdown__item"><span data-hours>00</span><small>Hours</small></div>
-          <div class="countdown__item"><span data-minutes>00</span><small>Minutes</small></div>
-          <div class="countdown__item"><span data-seconds>00</span><small>Seconds</small></div>
+    </section>
+
+    <section class="section vendor-cta">
+      <svg class="decor decor--right" viewBox="0 0 80 80" fill="none" aria-hidden="true"><path d="M14 62V23m0 0 8 4m-8-4-8 4" stroke="#b080ff" stroke-width="4"/><path d="M55 57l5-10 10-5-10-5-5-10-5 10-10 5 10 5z" fill="#9f76ff"/></svg>
+      <div class="container"><a class="btn-pill" href="#newsletter">Richmond Night Market Vendor Application 2026</a></div>
+    </section>
+
+    <section class="section" id="experience">
+      <div class="container">
+        <h2 class="section-title">The Experience</h2>
+        <div class="experience-grid">
+          <article class="exp-card"><img src="https://images.squarespace-cdn.com/content/v1/5ccc2e9b92441b0bec3f5236/1581541416006-H6B17NXG1090GGTRMO4X/Richmond+Night+Market+-+September+2019+%2873+of+73%29.jpg" alt="Artisan village"><div class="exp-card__body"><h3>Artisan Village</h3><p>Discover handcrafted goods, elevated retail concepts, and independent makers from across the region.</p></div></article>
+          <article class="exp-card"><img src="https://images.squarespace-cdn.com/content/v1/5ccc2e9b92441b0bec3f5236/1559713594165-1F5T45L11NQTEIDMJTUK/RNMVA-creative-kids-hangout-2.jpg" alt="Creative kids hangout"><div class="exp-card__body"><h3>Creative Kids Hangout</h3><p>Playful, hands-on programming built for curious young minds and families exploring together.</p></div></article>
+          <article class="exp-card"><img src="https://images.squarespace-cdn.com/content/v1/5ccc2e9b92441b0bec3f5236/1557463238569-Q3SE63G6PMTFSYNI2RH2/207-IMG_2982.jpg" alt="Main stage"><div class="exp-card__body"><h3>Main Stage</h3><p>Immersive music, dance, and cultural performances ignite every market evening.</p></div></article>
+          <article class="exp-card"><img src="https://images.squarespace-cdn.com/content/v1/5ccc2e9b92441b0bec3f5236/1559713726731-JBPWCM31YFFQKNG2GMYO/RNMVA-makerspace.jpg" alt="Makerspace"><div class="exp-card__body"><h3>Makerspace</h3><p>Live demos, workshops, and interactive creation stations spotlight Richmond innovation.</p></div></article>
         </div>
-      </aside>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="container">
-      <h2 class="section__title">Market Highlights</h2>
-      <div class="grid grid--3">
-        <article class="card fade-up"><h3>Artisan Village</h3><p>Shop unique products from independent artists and small business owners from across RVA.</p></article>
-        <article class="card fade-up"><h3>Creative Kids Hangout</h3><p>A family-forward zone for guided and non-guided activities designed for curious young makers.</p></article>
-        <article class="card fade-up"><h3>Main Stage + Makerspace</h3><p>Enjoy DJ sets, dance features, and live art activations that celebrate Richmond’s creative ecosystem.</p></article>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section class="section section--muted">
-    <div class="container grid grid--4">
-      <article class="card stat"><div class="counter" data-count="8500">0</div><p>Average monthly visitors</p></article>
-      <article class="card stat"><div class="counter" data-count="240">0</div><p>Small businesses supported</p></article>
-      <article class="card stat"><div class="counter" data-count="84">0</div><p>Community partners</p></article>
-      <article class="card stat"><div class="counter" data-count="9">0</div><p>Season events each year</p></article>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="container">
-      <h2 class="section__title">Testimonials</h2>
-      <article class="testimonial card is-active">“My favorite moment was seeing the city so well represented, inclusively.” — Richmond Night Market Vendor</article>
-      <article class="testimonial card">“The Richmond Night Market brings to our great city a much needed space for creatives to thrive!” — Amy Wentz</article>
-      <article class="testimonial card">“It brings all of the things we love about Richmond together in one spot.” — Bill Martin</article>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="container">
-      <h2 class="section__title">Photo Highlights</h2>
-      <div class="gallery">
-        <img src="https://images.squarespace-cdn.com/content/v1/5ccc2e9b92441b0bec3f5236/1559708915271-D5SPMH3U07U05U8Q823T/RNM_vendor-banner-image.jpg?format=1500w" alt="Crowd at Richmond Night Market">
-        <img src="https://images.squarespace-cdn.com/content/v1/5ccc2e9b92441b0bec3f5236/1559713594165-1F5T45L11NQTEIDMJTUK/RNMVA-creative-kids-hangout-2.jpg" alt="Creative kids activity space">
-        <img src="https://images.squarespace-cdn.com/content/v1/5ccc2e9b92441b0bec3f5236/1557463238569-Q3SE63G6PMTFSYNI2RH2/207-IMG_2982.jpg" alt="Live performance on main stage">
+    <section class="section gallery-carousel" id="gallery">
+      <div class="carousel-track">
+        <img class="is-active" src="https://images.squarespace-cdn.com/content/v1/5ccc2e9b92441b0bec3f5236/1557461826016-HFS32A8WYE4VOMT3W3OT/117-IMG_0379.jpg" alt="Night market crowd">
+        <img src="https://images.squarespace-cdn.com/content/v1/5ccc2e9b92441b0bec3f5236/1557461962284-41FK6J5XOEQAL1V2HKWK/123-IMG_1305.jpg" alt="Market vendor setup">
+        <img src="https://images.squarespace-cdn.com/content/v1/5ccc2e9b92441b0bec3f5236/1557464213165-UNV4LYUSZV4KVMF6KW08/220-IMG_1764.jpg" alt="Dance performance crowd">
+        <img src="https://images.squarespace-cdn.com/content/v1/5ccc2e9b92441b0bec3f5236/1557464067508-3ZB4BY4CGNL4Y9HJZK4H/219-IMG_1748.jpg" alt="Market lights and tents">
       </div>
-      <div class="lightbox" aria-hidden="true"><img src="" alt="Expanded gallery preview"></div>
-    </div>
-  </section>
+      <div class="carousel-dots" aria-label="Gallery slider controls"></div>
+    </section>
 
-  <section class="section section--cta">
-    <div class="container card card--wide">
-      <h2 class="section__title">Stay in the Loop</h2>
-      <p class="section__lede">Get dates, lineups, and vendor spotlights delivered to your inbox.</p>
-      <form data-newsletter class="form">
-        <label for="newsletter-email" class="visually-hidden">Email address</label>
-        <input id="newsletter-email" name="email" type="email" required placeholder="yourname@email.com">
-        <button class="btn btn--accent" type="submit">Subscribe</button>
-      </form>
-    </div>
-  </section>
-</main>
+    <section class="section" id="team">
+      <div class="container">
+        <h2 class="section-title">Meet The Richmond Night Market Team</h2>
+        <div class="team-list">
+          <article class="team-card"><img src="https://images.squarespace-cdn.com/content/v1/5ccc2e9b92441b0bec3f5236/1557463939176-01IYOV2D9U7G6QSVJQ8F/217-IMG_1724.jpg" alt="Adrienne Cole Johnson portrait"><div class="team-card__body"><h3>Adrienne Cole Johnson</h3><h4>Co-Founder</h4><p>“We built this market to celebrate Richmond’s entrepreneurs, artists, and families in one unforgettable night.”</p></div></article>
+          <article class="team-card"><img src="https://images.squarespace-cdn.com/content/v1/5ccc2e9b92441b0bec3f5236/1557463619097-6QW8I7VCC1B8SPVJRJ3J/213-IMG_1619.jpg" alt="Melody Short portrait"><div class="team-card__body"><h3>Melody Short</h3><h4>Co-Founder</h4><p>“Every activation is intentionally designed to inspire culture, commerce, and community.”</p></div></article>
+          <article class="team-card"><img src="https://images.squarespace-cdn.com/content/v1/5ccc2e9b92441b0bec3f5236/1559713594165-1F5T45L11NQTEIDMJTUK/RNMVA-creative-kids-hangout-2.jpg" alt="Ashley White portrait"><div class="team-card__body"><h3>Ashley White</h3><h4>Marketing &amp; Social Media Manager</h4><p>“Our storytelling keeps the market connected to the heartbeat of RVA year-round.”</p></div></article>
+          <article class="team-card"><img src="https://images.squarespace-cdn.com/content/v1/5ccc2e9b92441b0bec3f5236/1559708915271-D5SPMH3U07U05U8Q823T/RNM_vendor-banner-image.jpg?format=1500w" alt="Stefanie Cardwell portrait"><div class="team-card__body"><h3>Stefanie Cardwell</h3><h4>Operations Manager</h4><p>“From load-in to closeout, details matter. We make every event flow effortlessly.”</p></div></article>
+          <article class="team-card"><img src="https://images.squarespace-cdn.com/content/v1/5ccc2e9b92441b0bec3f5236/1557463238569-Q3SE63G6PMTFSYNI2RH2/207-IMG_2982.jpg" alt="Tenel Robinson portrait"><div class="team-card__body"><h3>Tenel Robinson</h3><h4>Market Coordinator</h4><p>“We focus on uplifting underrepresented creatives and creating meaningful access.”</p></div></article>
+          <article class="team-card"><img src="https://images.squarespace-cdn.com/content/v1/5ccc2e9b92441b0bec3f5236/1559713726731-JBPWCM31YFFQKNG2GMYO/RNMVA-makerspace.jpg" alt="Nia Saunders portrait"><div class="team-card__body"><h3>Nia Saunders</h3><h4>Market Assistant</h4><p>“The joy of seeing first-time vendors thrive is what makes this work so rewarding.”</p></div></article>
+          <article class="team-card"><img src="https://images.squarespace-cdn.com/content/v1/5ccc2e9b92441b0bec3f5236/1557464213165-UNV4LYUSZV4KVMF6KW08/220-IMG_1764.jpg" alt="Ashley Short portrait"><div class="team-card__body"><h3>Ashley Short</h3><h4>Creative Council Architect</h4><p>“We craft immersive moments that make the market feel vibrant, welcoming, and iconic.”</p></div></article>
+        </div>
+      </div>
+    </section>
 
-<footer class="site-footer">
-  <div class="container footer__grid">
-    <section>
-      <h2 class="footer__heading">Visit the Market</h2>
-      <p>Open Air Market every 2nd Saturday, April through December, 5 PM – 9 PM.</p>
-      <p>17th Street Market, 100 N 17th St, Richmond, VA 23219.</p>
-      <p><a href="mailto:richmondvanightmarket@gmail.com" aria-label="Email Richmond Night Market">richmondvanightmarket@gmail.com</a> · 804.874.4045</p>
+    <section class="volunteer section" aria-label="Volunteer callout">Join our family and become a Richmond Night Market volunteer</section>
+
+    <section class="section" id="instagram">
+      <div class="container">
+        <h2 class="section-title">Follow Us On IG</h2>
+        <div class="ig-grid">
+          <img src="https://images.squarespace-cdn.com/content/v1/5ccc2e9b92441b0bec3f5236/1557461826016-HFS32A8WYE4VOMT3W3OT/117-IMG_0379.jpg" alt="Instagram highlight 1">
+          <img src="https://images.squarespace-cdn.com/content/v1/5ccc2e9b92441b0bec3f5236/1557461962284-41FK6J5XOEQAL1V2HKWK/123-IMG_1305.jpg" alt="Instagram highlight 2">
+          <img src="https://images.squarespace-cdn.com/content/v1/5ccc2e9b92441b0bec3f5236/1557463238569-Q3SE63G6PMTFSYNI2RH2/207-IMG_2982.jpg" alt="Instagram highlight 3">
+          <img src="https://images.squarespace-cdn.com/content/v1/5ccc2e9b92441b0bec3f5236/1557463619097-6QW8I7VCC1B8SPVJRJ3J/213-IMG_1619.jpg" alt="Instagram highlight 4">
+          <img src="https://images.squarespace-cdn.com/content/v1/5ccc2e9b92441b0bec3f5236/1557463939176-01IYOV2D9U7G6QSVJQ8F/217-IMG_1724.jpg" alt="Instagram highlight 5">
+          <img src="https://images.squarespace-cdn.com/content/v1/5ccc2e9b92441b0bec3f5236/1557464067508-3ZB4BY4CGNL4Y9HJZK4H/219-IMG_1748.jpg" alt="Instagram highlight 6">
+          <img src="https://images.squarespace-cdn.com/content/v1/5ccc2e9b92441b0bec3f5236/1557464213165-UNV4LYUSZV4KVMF6KW08/220-IMG_1764.jpg" alt="Instagram highlight 7">
+          <img src="https://images.squarespace-cdn.com/content/v1/5ccc2e9b92441b0bec3f5236/1559713594165-1F5T45L11NQTEIDMJTUK/RNMVA-creative-kids-hangout-2.jpg" alt="Instagram highlight 8">
+        </div>
+      </div>
     </section>
-    <section>
-      <h2 class="footer__heading">Explore</h2>
-      <ul class="footer__list">
-        <li><a href="pages/become-a-vendor.html">Become a Vendor</a></li>
-        <li><a href="pages/join-our-family.html">Join Our Family</a></li>
-        <li><a href="pages/directions.html">Directions & Parking</a></li>
-      </ul>
+
+    <section class="section sponsors" id="sponsors">
+      <div class="container">
+        <h2 class="section-title">We Appreciate Our Sponsors, Partners &amp; Community Friends!</h2>
+        <div class="logo-row"><div class="logo-chip">Dominion Energy</div><div class="logo-chip">17th Street Market</div><div class="logo-chip">The Valentine</div><div class="logo-chip">VPM</div><div class="logo-chip">RVA Arts</div></div>
+        <a class="btn-pill" href="mailto:richmondvanightmarket@gmail.com">Email Us To Connect</a>
+      </div>
     </section>
-    <section>
-      <h2 class="footer__heading">Follow</h2>
-      <ul class="footer__list">
-        <li><a href="https://www.instagram.com/richmondnightmarketva/" aria-label="Instagram">Instagram</a></li>
-        <li><a href="https://www.facebook.com/RichmondNightMarket" aria-label="Facebook">Facebook</a></li>
-      </ul>
+
+    <section class="section media-features" id="media">
+      <div class="container">
+        <h2 class="section-title">Media Features</h2>
+        <div class="logo-row"><div class="logo-chip">Travel Noire</div><div class="logo-chip">Grid</div><div class="logo-chip">Black Enterprise</div><div class="logo-chip">Style Weekly</div><div class="logo-chip">RVS</div><div class="logo-chip">Richmond Mag</div><div class="logo-chip">Richmond Times-Dispatch</div></div>
+      </div>
     </section>
-  </div>
-</footer>
-<button class="btn btn--accent back-to-top" type="button" aria-label="Back to top">Top</button>
-<script type="module" src="js/main.js"></script>
+
+    <section class="section newsletter" id="newsletter">
+      <div class="container">
+        <h2 class="section-title">Join Our Mailing List</h2>
+        <form class="signup-form" aria-label="Newsletter signup form">
+          <input type="text" placeholder="First Name" aria-label="First Name" required>
+          <input type="text" placeholder="Last Name" aria-label="Last Name" required>
+          <input type="email" placeholder="Email Address" aria-label="Email Address" required>
+          <button type="submit">SIGN UP</button>
+        </form>
+      </div>
+    </section>
+
+    <section class="section vendor-photo" id="vendor-bottom">
+      <div class="container">
+        <h2 class="section-title">Interested In Being A Featured Vendor?</h2>
+        <a class="btn-pill" href="#newsletter">Vendor Applications</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <img src="https://images.squarespace-cdn.com/content/v1/5ccc2e9b92441b0bec3f5236/1559791827974-F6Y1JKAHZ96YXTF221NC/RNM+primary+logo+in+circle.png" alt="RNM logo">
+    <p>Instagram · Facebook · YouTube · Email</p>
+    <p>© 2026 Richmond Night Market. All rights reserved.</p>
+  </footer>
+
+  <script>
+    const header = document.querySelector('.site-header');
+    const menuButton = document.querySelector('.hamburger');
+    menuButton.addEventListener('click', () => {
+      const opened = header.classList.toggle('is-open');
+      menuButton.setAttribute('aria-expanded', String(opened));
+    });
+
+    const slides = [...document.querySelectorAll('.carousel-track img')];
+    const dotsWrap = document.querySelector('.carousel-dots');
+    let current = 0;
+
+    const setSlide = (idx) => {
+      slides[current].classList.remove('is-active');
+      dotsWrap.children[current].classList.remove('is-active');
+      current = idx;
+      slides[current].classList.add('is-active');
+      dotsWrap.children[current].classList.add('is-active');
+    };
+
+    slides.forEach((_, idx) => {
+      const dot = document.createElement('button');
+      dot.type = 'button';
+      dot.setAttribute('aria-label', `Show slide ${idx + 1}`);
+      if (idx === 0) dot.classList.add('is-active');
+      dot.addEventListener('click', () => setSlide(idx));
+      dotsWrap.append(dot);
+    });
+
+    setInterval(() => setSlide((current + 1) % slides.length), 5000);
+  </script>
 </body>
 </html>
